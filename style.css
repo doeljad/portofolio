@@ -1,0 +1,61 @@
+.jumbotron {
+  padding-top: 12rem;
+  background-color: #a2d9ff;
+}
+#myskills {
+  background-color: #a2d9ff;
+}
+section {
+  padding-top: 7rem;
+}
+#contact {
+  background-color: #a2d9ff;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.fade-in.appear {
+  opacity: 1;
+}
+
+.nav-scrolled {
+  --text: #333;
+  --text-inverse: #f4f4f4;
+  --background: #f4f4f4;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+}
+.from-left {
+  grid-column: 2 / 3;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.from-right {
+  -webkit-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+.from-left,
+.from-right {
+  transition: opacity 250ms ease-in, -webkit-transform 400ms ease-in;
+  transition: opacity 250ms ease-in, transform 400ms ease-in;
+  transition: opacity 250ms ease-in, transform 400ms ease-in,
+    -webkit-transform 400ms ease-in;
+  opacity: 0;
+}
+
+#imgskill {
+  border-radius: 60% 40% / 40% 100%;
+}
+.card {
+  border-radius: 100% 100% 20% 20%;
+}
+.shadw-card {
+  box-shadow: 2px 1px 21px 4px rgba(22,0,255,1);
+-webkit-box-shadow: 2px 1px 21px 4px rgba(22,0,255,1);
+-moz-box-shadow: 2px 1px 21px 4px rgba(22,0,255,1);
+}
+
