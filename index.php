@@ -1,0 +1,499 @@
+<?php
+// portfolio/index.php
+?>
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doeljad's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h5 {
+            color: #e6edf3;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.9)), url('https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1471&auto=format&fit=crop') no-repeat center center/cover;
+            background-attachment: fixed;
+            padding: 100px 0;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-img {
+            border: 4px solid #1f6feb;
+            box-shadow: 0 0 15px rgba(31, 111, 235, 0.6);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .tech-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .tech-logo:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .card {
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: scale(1.03) translateY(-5px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-img-top {
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        .btn-outline-primary {
+            border-color: #1f6feb;
+            color: #1f6feb;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #1f6feb;
+            color: #fff;
+        }
+
+        hr {
+            border-top: 2px solid #21262d;
+        }
+
+        a {
+            color: #1f6feb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #58a6ff;
+            text-decoration: underline;
+        }
+
+        .tech-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            filter: drop-shadow(1px 1px 2px #0005);
+        }
+
+        .object-fit-cover {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-section {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero-section text-center position-relative">
+        <div class="position-relative d-inline-block" style="z-index: 2;">
+            <img id="profile-img" src="assets/img/pp1.jpg"
+                class="rounded-circle shadow mb-3 profile-img"
+                alt="Doeljad Profile"
+                width="150"
+                height="150">
+            <canvas id="snow-canvas"
+                width="150"
+                height="150"
+                style="position: absolute; top: 0; left: 0; pointer-events: none; border-radius: 50%; z-index: 3;">
+            </canvas>
+        </div>
+
+
+        <h1 class="mb-2 fw-bold">Hi, I'm <strong>Abdullah Sajad</strong></h1>
+        <p class="lead text-muted">I'm a passionate Web Developer who builds modern web applications</p>
+
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="https://github.com/doeljad" target="_blank" class="btn btn-outline-light btn-lg">
+                <i class="fab fa-github me-2"></i> GitHub
+            </a>
+            <a href="mailto:doel.jad@gmail.com" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-envelope me-2"></i> Contact Me
+            </a>
+        </div>
+    </div>
+
+
+
+
+    <div class="container py-5">
+        <hr class="my-5">
+
+        <h2 class="mb-4 text-center" data-aos="fade-up">
+            <i class="fas fa-code me-2 text-info"></i>Tech Stack
+        </h2>
+        <!-- Languages -->
+        <h5 class="mt-4 text-light">Languages</h5>
+        <div class="row g-4 justify-content-center">
+            <?php
+            $languages = [
+                ['name' => 'PHP', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg'],
+                ['name' => 'JavaScript', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'],
+                ['name' => 'Python', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'],
+                ['name' => 'TypeScript', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg'],
+            ];
+            foreach ($languages as $lang) {
+                echo "<div class='col-4 col-md-2 text-center' data-aos='zoom-in'>
+                <img src='{$lang['logo']}' class='tech-logo mb-2' alt='{$lang['name']} logo'>
+                <p class='small text-light'>{$lang['name']}</p>
+              </div>";
+            }
+            ?>
+        </div>
+
+        <!-- Libraries & Frameworks -->
+        <h5 class="mt-5 text-light">Libraries & Frameworks</h5>
+        <div class="row g-4 justify-content-center">
+            <?php
+            $frameworks = [
+                ['name' => 'NestJS', 'logo' => 'https://nestjs.com/img/logo-small.svg'],
+                ['name' => 'Next.js', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg'],
+                ['name' => 'React.js', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg'],
+                ['name' => 'Express.js', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg'],
+                ['name' => 'Prisma', 'logo' => 'https://creazilla-store.fra1.digitaloceanspaces.com/icons/3256746/file-type-light-prisma-icon-md.png'],
+                ['name' => 'Bootstrap', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg'],
+                ['name' => 'Tailwind CSS', 'logo' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1024px-Tailwind_CSS_Logo.svg.png?20230715030042'],
+                ['name' => 'Laravel', 'logo' => 'https://logospng.org/download/laravel/logo-laravel-icon-1024.png'],
+            ];
+            foreach ($frameworks as $fw) {
+                echo "<div class='col-4 col-md-2 text-center' data-aos='zoom-in'>
+                <img src='{$fw['logo']}' class='tech-logo mb-2' alt='{$fw['name']} logo'>
+                <p class='small text-light'>{$fw['name']}</p>
+              </div>";
+            }
+            ?>
+        </div>
+
+        <!-- Databases -->
+        <h5 class="mt-5 text-light">Databases</h5>
+        <div class="row g-4 justify-content-center">
+            <?php
+            $databases = [
+                ['name' => 'PostgreSQL', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg'],
+                ['name' => 'MySQL', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg'],
+            ];
+            foreach ($databases as $db) {
+                echo "<div class='col-4 col-md-2 text-center' data-aos='zoom-in'>
+                <img src='{$db['logo']}' class='tech-logo mb-2' alt='{$db['name']} logo'>
+                <p class='small text-light'>{$db['name']}</p>
+              </div>";
+            }
+            ?>
+        </div>
+
+        <!-- Tools -->
+        <h5 class="mt-5 text-light">Tools</h5>
+        <div class="row g-4 justify-content-center">
+            <?php
+            $tools = [
+                ['name' => 'VS Code', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg'],
+                ['name' => 'Postman', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg'],
+                ['name' => 'Docker', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg'],
+                ['name' => 'GitHub', 'logo' => 'https://fanz0.github.io/PersonalPortfolio.github.io/assets/images/github-logo.png'],
+                ['name' => 'MS Word', 'logo' => 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Microsoft_Word_2013-2019_logo.svg'],
+                ['name' => 'MS Excel', 'logo' => 'https://upload.wikimedia.org/wikipedia/commons/7/73/Microsoft_Excel_2013-2019_logo.svg'],
+                ['name' => 'MS PowerPoint', 'logo' => 'https://icon-icons.com/icons2/2397/PNG/512/microsoft_power_point_office_logo_icon_145723.png'],
+                ['name' => 'MS Teams', 'logo' => 'https://static.vecteezy.com/system/resources/previews/027/179/349/large_2x/microsoft-teams-icon-logo-symbol-free-png.png'],
+            ];
+            foreach ($tools as $tool) {
+                echo "<div class='col-4 col-md-2 text-center' data-aos='zoom-in'>
+                <img src='{$tool['logo']}' class='tech-logo mb-2' alt='{$tool['name']} logo'>
+                <p class='small text-light'>{$tool['name']}</p>
+              </div>";
+            }
+            ?>
+        </div>
+
+
+        <!-- Style for logos -->
+
+
+        <hr class="my-5">
+
+        <h2 class="mb-4 text-center" data-aos="fade-up">My Projects</h2>
+        <div class="row" id="projects">
+            <!-- Modal untuk preview gambar -->
+            <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-body p-0">
+                            <img src="" class="w-100" id="modalImage" alt="Preview">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kartu Project -->
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card project-card p-0 shadow">
+                    <div class="ratio ratio-1x1 overflow-hidden">
+                        <img src="assets\img\dpos-id.jpg" class="card-img-top object-fit-cover img-popup" alt="dPOS.id Preview">
+                    </div>
+                    <div class="card-body bg-dark text-light">
+                        <h5 class="card-title">dPOS.id</h5>
+                        <p class="card-text">Aplikasi POS web & Android untuk retail multi-cabang. Fitur: penjualan, laporan, stok, struk. Dibuat dengan React.js (PWA), NestJS & PostgreSQL.</p>
+                        <a href="https://github.com/doeljad/dpos-id" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card project-card p-0 shadow">
+                    <div class="ratio ratio-1x1 overflow-hidden">
+                        <img src="assets/img/alhalim.jpg" class="card-img-top object-fit-cover img-popup" alt="Alhalim Mobile Preview">
+                    </div>
+                    <div class="card-body bg-dark text-light">
+                        <h5 class="card-title">Al Halim Mobile</h5>
+                        <p class="card-text">Aplikasi pembayaran untuk santri Pondok Al Halim. Dibangun dengan PHP & JS, terintegrasi Midtrans untuk transaksi cepat & aman.</p>
+                        <a href="https://github.com/doeljad/Alhalim-Mobile" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card project-card p-0 shadow">
+                    <img src="assets\img\qr-attendance.jpg" class="card-img-top" alt="Project 3 Preview">
+                    <div class="card-body bg-dark text-light">
+                        <h5 class="card-title">QR Attendance</h5>
+                        <p class="card-text">Aplikasi untuk memantau kehadiran peserta magang.
+                            Menggunakan QR Code untuk absensi di tiap departemen, mendukung pemantauan real-time,
+                            pengelolaan jadwal dan laporan.</p>
+                        <a href="https://github.com/doeljad/QR-Attendance" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card project-card p-0 shadow">
+                    <img src="assets\img\todolist.jpg" class="card-img-top" alt="Project 3 Preview">
+                    <div class="card-body bg-dark text-light">
+                        <h5 class="card-title">Todo List Project Management</h5>
+                        <p class="card-text">Aplikasi web manajemen proyek kolaboratif yang dibangun dengan Next.js, PostgreSQL, dan Prisma.
+                            Mendukung autentikasi JWT/NextAuth dan UI modern berbasis Tailwind CSS + Shadcn.</p>
+                        <a href="https://github.com/doeljad/todolist-project-management" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card project-card p-0 shadow">
+                    <img src="assets\img\marni.jpg" class="card-img-top" alt="Project 3 Preview">
+                    <div class="card-body bg-dark text-light">
+                        <h5 class="card-title">Marni Wedding Organizer</h5>
+                        <p class="card-text">Aplikasi pemesanan paket wedding organizer online yang dibangun dengan PHP dan JavaScript,
+                            terintegrasi Midtrans untuk pembayaran aman dan real-time tracking status pesanan.</p>
+                        <a href="https://github.com/doeljad/todolist-project-management" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card project-card p-0 shadow">
+                    <img src="assets\img\sikeu.jpg" class="card-img-top" alt="Project 3 Preview">
+                    <div class="card-body bg-dark text-light">
+                        <h5 class="card-title">Sistem Keuangan SMK Grafika</h5>
+                        <p class="card-text">Aplikasi pembayaran SPP online dan manajemen keuangan sekolah.
+                            Dibangun dengan PHP dan JS, serta terintegrasi Midtrans, memudahkan memantau arus kas secara real-time.</p>
+                        <a href="https://github.com/doeljad/Sikeu-SMK-Grafika" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card project-card p-0 shadow">
+                    <img src="assets\img\meca.jpg" class="card-img-top" alt="Project 3 Preview">
+                    <div class="card-body bg-dark text-light">
+                        <h5 class="card-title">Meca Bengkel Motor</h5>
+                        <p class="card-text">Aplikasi web berbasis PHP dan JavaScript untuk mengelola penjualan dan
+                            stok suku cadang secara real-time, membantu operasional bengkel menjadi lebih efisien dan terkontrol.</p>
+                        <a href="https://github.com/doeljad/Meca-Bengkel-Motor" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card project-card p-0 shadow">
+                    <img src="assets\img\queeneisha.jpg" class="card-img-top" alt="Project 3 Preview">
+                    <div class="card-body bg-dark text-light">
+                        <h5 class="card-title">Queeneisha Aesthetic Clinic</h5>
+                        <p class="card-text">Situs berbasis PHP dan JS
+                            yang menampilkan layanan, profil klinik, serta formulir kontak untuk konsultasi dan reservasi, untuk memudahkan interaksi dengan calon klien.</p>
+                        <a href="https://queeneisha.com/" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fas fa-globe me-1"></i> View Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card project-card p-0 shadow">
+                    <img src="assets\img\forecasting.jpg" class="card-img-top" alt="Project 3 Preview">
+                    <div class="card-body bg-dark text-light">
+                        <h5 class="card-title">Sistem Forecasting Penjualan</h5>
+                        <p class="card-text">Aplikasi web berbasis
+                            PHP, JS, dan Python yang membantu memprediksi penjualan, mengelola persediaan, serta mendukung
+                            pengambilan keputusan dan efisiensi operasional perusahaan.</p>
+                        <a href="https://github.com/doeljad/Forecasting-Penjualan" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card project-card p-0 shadow">
+                    <img src="assets\img\alsalam.jpg" class="card-img-top" alt="Project 3 Preview">
+                    <div class="card-body bg-dark text-light">
+                        <h5 class="card-title"> Sistem Stocking</h5>
+                        <p class="card-text">Aplikasi stok gudang real-time untuk Al Salam Textile Solo, memudahkan pencatatan barang
+                            dan notifikasi stok menipis, dibangun dengan PHP & JavaScript.</p>
+                        <a href="https://github.com/doeljad/Al-Salam-Textile" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.img-popup').forEach(img => {
+            img.addEventListener('click', () => {
+                const modalImage = document.getElementById('modalImage');
+                modalImage.src = img.src;
+                new bootstrap.Modal(document.getElementById('imageModal')).show();
+            });
+        });
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 800,
+        });
+    </script>
+
+    <script>
+        const canvas = document.getElementById("snow-canvas");
+        const ctx = canvas.getContext("2d");
+        const width = canvas.width;
+        const height = canvas.height;
+
+        let flakes = [];
+        let piledFlakes = [];
+
+        for (let i = 0; i < 50; i++) {
+            flakes.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: Math.random() * 2 + 1,
+                speed: Math.random() * 1 + 0.5,
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Gambar salju yang jatuh
+            for (let i = flakes.length - 1; i >= 0; i--) {
+                let flake = flakes[i];
+                flake.y += flake.speed;
+
+                if (flake.y >= height - flake.r) {
+                    // Tambahkan ke salju yang menumpuk
+                    piledFlakes.push({
+                        x: flake.x,
+                        y: height - flake.r,
+                        r: flake.r
+                    });
+                    flakes.splice(i, 1); // Hapus dari flakes jatuh
+                    // Tambahkan 1 flake baru dari atas
+                    flakes.push({
+                        x: Math.random() * width,
+                        y: 0,
+                        r: Math.random() * 2 + 1,
+                        speed: Math.random() * 1 + 0.1,
+                    });
+                }
+
+                ctx.beginPath();
+                ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2);
+                ctx.fillStyle = "white";
+                ctx.fill();
+            }
+
+            // Gambar salju yang menumpuk (tumpukan tetap di bawah)
+            for (let piled of piledFlakes) {
+                // Pastikan hanya dalam lingkaran
+                let dx = piled.x - width / 2;
+                let dy = piled.y - height / 2;
+                if (Math.sqrt(dx * dx + dy * dy) <= width / 2) {
+                    ctx.beginPath();
+                    ctx.arc(piled.x, piled.y, piled.r, 0, Math.PI * 2);
+                    ctx.fillStyle = "white";
+                    ctx.fill();
+                }
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
+
+
+
+
+</body>
+
+</html>
